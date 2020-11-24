@@ -1,0 +1,78 @@
+//Adding new Driver
+
+<%- include('../partials/header'); -%>
+    <div id="content" class="content">
+        <!-- begin breadcrumb -->
+        <ol class="breadcrumb pull-right">
+            <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+        <!-- end breadcrumb -->
+        <!-- begin page-header -->
+        <h1 class="page-header">Add new Driver <small>Enter details of new driver...</small></h1>
+        <!-- end page-header -->
+
+        <!-- begin row -->
+        <div class="row">
+            <!-- begin col-3 -->
+            <div class="col-lg-12 col-md-12">
+                <div class="panel panel-inverse" data-sortable-id="form-validation-1">
+                    <!-- begin panel-heading -->
+                    <div class="panel-heading">
+                        <div class="panel-heading-btn">
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                        </div>
+                        <h4 class="panel-title">New driver form</h4>
+                    </div>
+                    <!-- end panel-heading -->
+                    <!-- begin panel-body -->
+                    <div class="panel-body">
+                        <form class="form-horizontal" da ta-parsley-validate="true" name="demo-form" action="/dash/drivers" method="POST">
+                            <div class="form-group row m-b-15">
+                                <label class="col-md-4 col-sm-4 col-form-label" for="fullname">Full Name * :</label>
+                                <div class="col-md-8 col-sm-8">
+                                    <input class="form-control" type="text" id="fullname" name="name" placeholder="Required" data-parsley-required="true" value="<%= driver.name %>" />
+                                </div>
+                            </div>
+                            <div class="form-group row m-b-15">
+                                <label class="col-md-4 col-sm-4 col-form-label" for="address">Address  :</label>
+                                <div class="col-md-8 col-sm-8">
+                                    <input class="form-control" type="text" id="address" name="address" data-parsley-type="text" placeholder="Address" data-parsley-required="true"  value="<%= driver.address %>" />
+                                </div>
+                            </div>
+                            <div class="form-group row m-b-15">
+                                <label class="col-md-4 col-sm-4 col-form-label" for="mobile_no">Mobile * :</label>
+                                <div class="col-md-8 col-sm-8">
+                                    <input class="form-control" type="tel" pattern="[0-9]{10}" id="phone" name="mobile_no" data-parsley-type="tel" placeholder="Mobile no." value="<%= driver.mobile_no %>"/>
+                                </div>
+                            </div>
+                            <div class="form-group row m-b-15">
+                                <label class="col-md-4 col-sm-4 col-form-label" for="dl">Driving License number * :</label>
+                                <div class="col-md-8 col-sm-8">
+                                    <input class="form-control" type="text" id=" dl_no " name="licenseno" data-parsley-required="text" placeholder="DL no." value="<%= driver.licenseno %>" />
+                                </div>
+                            </div>
+                            <div class="form-group row m-b-0 ">
+                                <label class="col-md-4 col-sm-4 col-form-label ">&nbsp;</label>
+                                <div class="col-md-8 col-sm-8 ">
+                                    <button type="submit " id="mysubmit " class="btn btn-primary ">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- end panel-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // let li = document.getElementById("#viewDrivers ");
+        // let li2 = document.getElementById("#newDriver ");
+        // li.classList.remove("active ");
+        // li2.classList.add("active ");
+    </script>
+
+    <%- include('../partials/footer'); -%>

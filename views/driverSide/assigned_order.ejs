@@ -1,0 +1,148 @@
+<%- include('partials/header'); -%>
+<div class="container">
+	<!--================Order Details Area =================-->
+	<section>
+		<div class="container" style="margin: 20px;">
+            <h3 class="title_confirmation"><%- include('partials/messages'); -%></h3>
+            <% if(order !== null){ %>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="widget widget-stats bg-grey-lighter">
+                            <!-- <div class="stats-icon"><i class="fa fa-users"></i></div> -->
+                            <h4>Order Info</h4>
+                            <div class="stats-info">
+                                <ul class="list" style="color: black;">
+                                    <li><a><span>Order number</span> : <%= order.order_id %> </a></li>
+                                    <li><a><span>Date</span>: <%= order.order_date %></a></li>
+                                    <li><a><span>Customer contact</span> : <%= order.order_mobile_no %></a></li>
+                                    <li><a><span>Total</span> : <%= order.order_amount %></a></li>
+                                    
+                                </ul>
+                            </div>
+                            <!-- <div class="stats-link">
+                                <a href="javascript:;">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="widget widget-stats bg-grey-lighter">
+                            <!-- <div class="stats-icon"><i class="fa fa-users"></i></div> -->
+                            <h4>Delivery details</h4>
+                            <div class="stats-info">
+                                
+                                <ul class="list" style="color: black;">
+                                    <li><a><span>Address</span> : <%= order.order_shipping_address %> </a></li>
+                                    <li><a><span>Date</span> : <%= order.order_delivery_date %> </a></li>
+                                </ul>
+                            </div>
+                            <!-- <div class="stats-link">
+                                <a href="javascript:;">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-lg-4">
+                        <div class="details_item">
+                            <h4>Shipping Address</h4>
+                            <ul class="list">
+                                <li><a href="#"><span>Street</span> : 56/8</a></li>
+                                <li><a href="#"><span>City</span> : Los Angeles</a></li>
+                                <li><a href="#"><span>Country</span> : United States</a></li>
+                                <li><a href="#"><span>Postcode </span> : 36952</a></li>
+                            </ul>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="col-lg-12">
+                    <!-- begin panel -->
+                    <div class="panel panel-inverse" data-sortable-id="table-basic-1">
+                        <!-- begin panel-heading -->
+                        <div class="panel-heading">
+                            <div class="panel-heading-btn">
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                            </div>
+                            <h4 class="panel-title">Order Details</h4>
+                        </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered m-b-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Product ID</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% orderedItems.forEach(function(orderedItem){ %>
+                                    <tr>
+                                        <td>
+                                            <h6><%= orderedItem.item.product_name %></h6>
+                                        </td>
+                                        <td>
+                                            <h6><%= orderedItem.item.product_id %></h6>
+                                        </td>
+                                        <td>
+                                            <h6>x <%= orderedItem.qty %></h6>
+                                        </td>
+                                        <td>
+                                            <h6>Rs.<%= orderedItem.price %></h6>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                                <tr>
+                                    <td>
+                                        <h5>Subtotal</h5>
+                                    </td>
+                                    <td>
+                                    
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
+                                    <td>
+                                        <h5>Rs. <%= order.order_amount %></h5>
+                                    </td>
+                                </tr>
+                                <!-- <tr>
+                                    <td>
+                                        <h4>Shipping</h4>
+                                    </td>
+                                    <td>
+                                        <h5></h5>
+                                    </td>
+                                    <td>
+                                        <p>Free</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4>Total</h4>
+                                    </td>
+                                    <td>
+                                        <h5></h5>
+                                    </td>
+                                    <td>
+                                        <p>$2160.00</p>
+                                    </td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <a href="/driver-dash/mark-order-delivered" class="btn btn-lg btn-success btn-block" style="margin-bottom:10px;">Mark delivered</a>
+    <% }else{ %>
+
+        <h1 style="text-align: center;">No orders</h1>
+    <% } %>    
+	</div>
+	</section>
+	<!--================End Order Details Area =================-->
+</div>
+<%- include('partials/footer'); -%>

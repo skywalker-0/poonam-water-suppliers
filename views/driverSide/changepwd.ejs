@@ -1,0 +1,24 @@
+<%- include('partials/header'); -%>
+<div id="content" class="content" style="height: 100%;">
+    <div class="col-lg-6">
+        <div clas="container">
+            <h3 style="color: black;font-size: 20px;font-weight: bold;">Change Password</h3>
+            <div class="col-md-12">
+                <%- include('partials/messages'); -%>
+            </div>
+            <form class="row" action="/driver-dash/change-password" method="post" id="contactForm" novalidate="novalidate">
+                <div class="col-md-12 form-group">
+                    <input type="password" class="form-control" id="pwd" name="oldpwd" placeholder="Old Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Old Password'" required>
+                </div>
+                <div class="col-md-12 form-group">
+                    <input type="password" class="form-control" id="pwd1" name="newpwd" placeholder="New Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'New Password'" required>
+                </div>
+                
+                <div class="col-md-12 form-group">
+                    <button type="submit" value="submit" class="primary-btn">Change Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include('partials/footer'); -%>

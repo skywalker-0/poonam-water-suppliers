@@ -1,0 +1,96 @@
+//Displaying all users
+
+<%- include('../partials/header'); -%>
+    <div id="content" class="content">
+        <!-- begin breadcrumb -->
+        <!-- <ol class="breadcrumb pull-right">
+            <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol> -->
+        <!-- end breadcrumb -->
+        <!-- begin page-header -->
+        <h1 class="page-header">Users</h1>
+        <!-- <form action="/dash/user/new">
+            <button type="submit" class="btn btn-md btn-success btn-block" style="margin-bottom:10px;">Add User</button>
+        </form> -->
+        <!-- end page-header -->
+
+        <!-- begin row -->
+        <div class="row">
+            <!-- begin col-3 -->
+            <div class="col-lg-12 col-md-12">
+
+                <div class="panel panel-inverse" data-sortable-id="table-basic-1">
+                    <!-- begin panel-heading -->
+                    <div class="panel-heading">
+                        <div class="panel-heading-btn">
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo" style="margin-top: 3px;"></i></a>
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand" style="margin-top: 3px;"></i></a>
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus" style="margin-top: 3px;"></i></a>
+                        </div>
+                        <h4 class="panel-title">Users</h4>
+                    </div>
+                    <!-- end panel-heading -->
+                    <!-- begin panel-body -->
+                    <div class="panel-body">
+                        <!-- begin table-responsive -->
+                        <div class="table-responsive">
+                            <table class="table table-responsive table-hover m-b-0">
+                                <thead>
+                                    <tr>
+                                        <th>Email</th>
+                                        <th>Name</th>
+                                        <th>Mobile No.</th>
+                                        <th>Address</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% users.forEach(function(user){ %>
+                                        <tr>
+                                            <form method="POST">
+                                                <td class="with-form-control">
+                                                    <input type="text" class="form-control" name="email_id" value="<%= user.email_id %>">
+                                                </td>
+                                                <td class="with-form-control">
+                                                    <input type="text" class="form-control" style="width: 200px" name="user_name" value="<%= user.user_name %>">
+                                                </td>
+                                                <td class="with-form-control">
+                                                    <input type="number" class="form-control" name="mobile_no" value="<%= user.mobile_no %>">
+                                                </td>
+                                                <td class="with-form-control">
+                                                    <input type="textarea" class="form-control" name="address" value="<%= user.address %>">
+                                                </td>
+                                                
+
+
+                                                <td class="with-btn-group" nowrap>
+                                                    <input type="submit" formaction="/dash/users/<%= user.email_id %>?_method=PUT" class="btn btn-sm btn-outline-primary" value="Save changes"/>
+                                                    <input type="submit" formaction="/dash/users/<%= user.email_id %>?_method=DELETE" class="btn btn-sm btn-outline-danger" value="Remove"/>
+                                                </td>
+                                            </form>
+                                        </tr>
+                                        <% }); %>
+
+                                </tbody>
+                            </table>
+                            <%- include('../partials/messages'); -%>
+                        </div>
+                        <!-- end table-responsive -->
+                    </div>
+                    <!-- end panel-body -->
+                    <!-- begin hljs-wrapper -->
+                    <!-- <div class="hljs-wrapper">
+                        <pre><code class="html">&lt;table class="table"&gt;
+...
+&lt;/table&gt;</code></pre>
+                    </div> -->
+                    <!-- end hljs-wrapper -->
+                </div>
+                <!-- end panel -->
+
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/footer'); -%>

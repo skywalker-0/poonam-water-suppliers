@@ -1,0 +1,112 @@
+//Displaying all products
+
+<%- include('../partials/header'); -%>
+    <div id="content" class="content">
+        <!-- begin breadcrumb -->
+        <!-- <ol class="breadcrumb pull-right">
+            <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol> -->
+        <!-- end breadcrumb -->
+        <!-- begin page-header -->
+        <h1 class="page-header">Products</h1>
+        <form action="/dash/product/new">
+            <button type="submit" class="btn btn-md btn-success btn-block" style="margin-bottom:10px;">Add Product</button>
+        </form>
+        <!-- end page-header -->
+
+        <!-- begin row -->
+        <div class="row">
+            <!-- begin col-3 -->
+            <div class="col-lg-12 col-md-12">
+
+                <div class="panel panel-inverse" data-sortable-id="table-basic-1">
+                    <!-- begin panel-heading -->
+                    <div class="panel-heading">
+                        <div class="panel-heading-btn">
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo" style="margin-top: 3px;"></i></a>
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand" style="margin-top: 3px;"></i></a>
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus" style="margin-top: 3px;"></i></a>
+                        </div>
+                        <h4 class="panel-title">Products</h4>
+                    </div>
+                    <!-- end panel-heading -->
+                    <!-- begin panel-body -->
+                    <div class="panel-body">
+                        <!-- begin table-responsive -->
+                        <div class="table-responsive">
+                            <table class="table table-responsive table-hover m-b-0">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Capacity</th>
+                                        <th>Brand ID</th>
+                                        <th>Type ID</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% products.forEach(function(product){ %>
+                                        <tr>
+                                            <form method="POST">
+                                                <td class="with-form-control">
+                                                    <input type="text" class="form-control" name="product_id" value="<%= product.product_id %>">
+                                                </td>
+                                                <td class="with-form-control">
+                                                    <input type="text" class="form-control" style="width: 200px" name="product_name" value="<%= product.product_name %>">
+                                                </td>
+                                                <td class="with-form-control">
+                                                    <input type="textarea" class="form-control" name="product_description" value="<%= product.product_description %>">
+                                                </td>
+                                                <td class="with-form-control">
+                                                    <input type="text" class="form-control" name="product_price" value="<%= product.product_price %>">
+                                                </td>
+                                                <td class="with-form-control">
+                                                    <input type="text" class="form-control" name="product_qty" value="<%= product.product_qty %>">
+                                                </td>
+                                                
+                                                <td class="with-form-control">
+                                                    <input type="text" class="form-control" name="product_capacity" value="<%= product.product_capacity %>">
+                                                </td>
+                                                
+                                                <td class="with-form-control">
+                                                    <input type="text" class="form-control" name="fk_brand_id" value="<%= product.fk_brand_id %>">
+                                                </td>
+                                                
+                                                <td class="with-form-control">
+                                                    <input type="text" class="form-control" name="fk_category_id" value="<%= product.fk_category_id %>">
+                                                </td>
+
+                                                <td class="with-btn-group" nowrap>
+                                                    <input type="submit" formaction="/dash/products/<%= product.product_id %>?_method=PUT" class="btn btn-sm btn-outline-primary" value="Save changes"/>
+                                                    <input type="submit" formaction="/dash/products/<%= product.product_id %>?_method=DELETE" class="btn btn-sm btn-outline-danger" value="Remove"/>
+                                                </td>
+                                            </form>
+                                        </tr>
+                                        <% }); %>
+
+                                </tbody>
+                            </table>
+                            <%- include('../partials/messages'); -%>
+                        </div>
+                        <!-- end table-responsive -->
+                    </div>
+                    <!-- end panel-body -->
+                    <!-- begin hljs-wrapper -->
+                    <!-- <div class="hljs-wrapper">
+                        <pre><code class="html">&lt;table class="table"&gt;
+...
+&lt;/table&gt;</code></pre>
+                    </div> -->
+                    <!-- end hljs-wrapper -->
+                </div>
+                <!-- end panel -->
+
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/footer'); -%>

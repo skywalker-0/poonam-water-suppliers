@@ -1,0 +1,58 @@
+<%- include('partials/header'); -%>
+
+	<!-- Start Banner Area -->
+	<section class="banner-area organic-breadcrumb">
+		<div class="container">
+			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+				<div class="col-first">
+					<h1>Change Password</h1>
+					<nav class="d-flex align-items-center">
+						<a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
+						<a href="">Change Password</a>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Banner Area -->
+
+	<!--================Login Box Area =================-->
+	<section class="login_box_area section_gap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="login_box_img">
+						<img class="img-fluid" src="/assets/customerSide/img/banner/common-banner.jpg" style="height: 400px;" alt="">
+						<div class="hover">
+							<h4>Don't want to change Password?</h4>
+							
+							<a class="primary-btn" href="/">Back To Home Page</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="login_form_inner">
+						<h3 style="color: #424195;font-size: 20px;font-weight: bold;">Change Password</h3>
+						<div class="col-md-12">
+							<%- include('partials/messages'); -%>
+						</div>
+						<form class="row login_form" action="change-password" method="post" id="contactForm" novalidate="novalidate">
+							<div class="col-md-12 form-group">
+								<input type="password" class="form-control" id="pwd" name="oldpwd" placeholder="Old Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Old Password'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="password" class="form-control" id="pwd1" name="newpwd" placeholder="New Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'New Password'">
+							</div>
+							
+							<div class="col-md-12 form-group">
+								<button type="submit" value="submit" class="primary-btn">Change Password</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Login Box Area =================-->
+
+	<%- include('partials/footer'); -%>

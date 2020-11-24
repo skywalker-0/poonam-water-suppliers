@@ -1,0 +1,72 @@
+<%- include('partials/header'); -%>
+
+	<!-- Start Banner Area -->
+	<section class="banner-area organic-breadcrumb">
+		<div class="container">
+			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+				<div class="col-first">
+					<h1>View/Edit Profile</h1>
+					<nav class="d-flex align-items-center">
+						<a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
+						<a href="">Edit Profile</a>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Banner Area -->
+
+	<!--================Login Box Area =================-->
+	<section class="login_box_area section_gap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="login_box_img">
+						<img class="img-fluid" src="/assets/customerSide/img/banner/common-banner.jpg" style="height: 580px;" alt="">
+						<div class="hover">
+							<h4>Don't Want To Edit Your Profile?</h4>
+							
+							<a class="primary-btn" href="/">Go Back To Home Page</a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6">
+					<div class="login_form_inner">
+						<h3 style="color: #424195;font-size: 20px;font-weight: bold;">Edit Profile</h3>
+						<div class="col-md-12">
+							<%- include('partials/messages'); -%>
+						</div>
+						<form action="/edit-profile" class="row login_form"  method="post" id="contactForm" novalidate="novalidate">
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="name" name="user_name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'" value="<%= user.user_name %>" >
+                            </div>
+                            <div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="email_id" name="email_id" placeholder="Email-id" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email-id'" value="<%= user.email_id %>" >
+							</div>
+                            <div class="col-md-12 form-group">
+								<input type="number" class="form-control" id="mob_no" name="mobile_no" placeholder="Mobile number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mobile number'" value="<%= user.mobile_no %>" >
+							</div>
+							
+                            <!-- <div class="col-md-12 form-group">
+                                <textarea rows="2" cols="50" id="address" name="address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'">
+                            </textarea>								 
+							</div>-->
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="address" name="address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'" value="<%= user.address %>" >
+							</div>
+							
+							
+							<div class="col-md-12 form-group">
+								<button type="submit" value="submit" class="primary-btn">Edit Profile</button>
+							
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Login Box Area =================-->
+
+	<%- include('partials/footer'); -%>

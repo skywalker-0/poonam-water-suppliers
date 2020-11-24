@@ -1,0 +1,167 @@
+<%- include('partials/header'); -%>
+
+
+	<!-- Start Banner Area -->
+	<section class="banner-area organic-breadcrumb">
+		<div class="container">
+			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+				<div class="col-first">
+					<h1>Login/Register</h1>
+					<nav class="d-flex align-items-center">
+						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+						<a href="./register.html">Login/Register</a>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Banner Area -->
+
+	<!--================Login Box Area =================-->
+	<section class="login_box_area section_gap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="login_box_img">
+						<img class="img-fluid" src="/assets/customerSide/img/banner/common-banner.jpg" style="height: 580px;" alt="">
+						<div class="hover">
+							<h4>Already Have an Account?</h4>
+							
+							<a class="primary-btn" href="/login">Login</a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6">
+					<div class="login_form_inner">
+						<h3 style="color: #424195;font-size: 20px;font-weight: bold;">Registration Form</h3>
+						<!-- <form  onSubmit = "return checkPassword(this)" action="/register" class="row login_form"  method="post" id="contactForm"> -->
+						<form  onSubmit = "return (ValidateEmail(this) && checkPassword(this));" action="/register" class="row login_form"  method="post" id="contactForm" novalidate="novalidate">
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="name" name="username" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+                            </div>
+                            <div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="email_id" name="email_id" placeholder="Email-id" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email-id'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="password" class="form-control" id="name" name="password1" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="password" class="form-control" id="name" name="password2" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
+                            </div>
+                            <div class="col-md-12 form-group">
+								<input type="tel" class="form-control" id="mob_no" name="mob_no"  pattern="[0-9]{10}" placeholder="Mobile number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mobile number'">
+							</div>
+                            <!-- <div class="col-md-12 form-group">
+                                <textarea rows="2" cols="50" id="address" name="address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'">
+                            </textarea>								 
+							</div>-->
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="address" name="address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'">
+							</div>
+							<!-- <div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="type" name="type" placeholder="Type of user" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Type of user'">
+							</div> -->
+							
+							<div class="col-md-12 form-group">
+								<button type="submit" value="submit" class="primary-btn">Register</button>
+							
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- <script> 
+          
+		// Function to check Whether both passwords 
+		// is same or not. 
+		function checkPassword(form) { 
+			password1 = form.password1.value; 
+			password2 = form.password2.value; 
+
+			// If password not entered 
+			if (password1 == '') 
+				alert ("Please enter Password"); 
+				  
+			// If confirm password not entered 
+			else if (password2 == '') 
+				alert ("Please enter confirm password"); 
+				  
+			// If Not same return False.     
+			else if (password1 != password2) { 
+				alert ("\nPassword did not match: Please try again...") 
+				return false; 
+			} 
+
+			// If same return True. 
+			else{ 
+				return true; 
+			} 
+		} 
+	</script>  -->
+
+	<script> 
+		  
+		function ValidateEmail(form)
+		{
+ 			if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email_id.value))
+  			{
+    			return true;
+  			}
+    		alert("You have entered an invalid email address!")
+    		return false;
+		}
+		
+		// Function to check Whether both passwords is same or not,
+		//also the password should contain One uppercase, one lowercase, one numeric digit and length should be between 6 to 20.  
+		function checkPassword(form) { 
+			var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+			password1 = form.password1.value; 
+			password2 = form.password2.value; 
+			
+			phone=form.mob_no.value;
+			var phonepat=/^[0-9]{10}$/;
+			if(phone.match(phonepat)){
+
+			}
+			else{
+				alert("\nPhone number entered is not valid (10 digit phone number required)");
+				return false;
+			}
+			// If password not entered 
+			if (password1 == '') 
+				alert ("Please enter Password"); 
+
+			if(password1.match(passw))
+			{
+				  
+				// If confirm password not entered 
+				if (password2 == '') 
+					alert ("Please enter confirm password"); 
+				  
+				// If Not same return False.     
+				else if (password1 != password2) { 
+					alert ("\nPassword did not match: Please try again...") 
+					return false; 
+				}
+
+				//If same return True. 
+				else{ 
+					return true; 
+				}	
+			}
+			else{
+				alert("\nYour password should be between 6 to 20 characters and contain at least one numeric digit, one uppercase and one lowercase letter")
+				return false;
+			}
+			 
+		}
+
+		
+	</script>
+
+	<!--================End Login Box Area =================-->
+	<%- include('partials/footer'); -%>

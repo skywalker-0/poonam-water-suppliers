@@ -1,0 +1,196 @@
+<%- include('partials/header'); -%>
+
+<script type="text/javascript">
+    function grayer(formId, yesNo) {
+       var f = document.getElementById(formId), s, opacity;
+       s = f.style;
+       opacity = yesNo? '40' : '100';
+       s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
+       s.filter = 'alpha(opacity='+opacity+')';
+       for(var i=0; i<f.length; i++) f[i].disabled = yesNo;
+    }
+
+    function terms_changed(termsCheckBox,btnId){
+        //If the checkbox has been checked
+        var b=document.getElementById(btnId);
+        s= b.style;
+            if(termsCheckBox.checked){
+                opacity='100'
+                s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
+                s.filter = 'alpha(opacity='+opacity+')';
+                //Set the disabled property to FALSE and enable the button.
+                b.disabled = false;
+            } else{
+                opacity='40'
+                s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
+                s.filter = 'alpha(opacity='+opacity+')';
+                //Otherwise, disable the submit button.
+                b.disabled = true;
+            }
+    }   
+
+    function checkPaymentMode(){
+        var rbO=document.getElementById('rbOnline');
+        var rbC=document.getElementById('rbCash');
+        var f=document.getElementById('f_1');
+
+        if(rbO.checked){
+            f.action="/payment?_method=GET";
+        }
+        else if(rbC.checked){
+            f.action="/confirmation?_method=POST";
+        }
+    }
+
+    // window.onload=function(){grayer('f_1',false);}; // disabled by default
+</script>
+
+<!-- <style type="text/css">
+    form {  _height: 1%; /* hack IE */
+             padding: 10px; background:#ff5;
+          }
+</style> -->
+
+
+    <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>Checkout</h1>
+                    <nav class="d-flex align-items-center">
+                        <a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="/products">Shop<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="">Checkout</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+
+    <!--================Checkout Area =================-->
+    <section class="checkout_area section_gap">
+        <div class="container">
+            <form id="f_1" action="/" method="POST">            
+                <div class="order_box">
+                    <h2>Please fill the following details:</h2>
+                    <div style="margin-bottom: 5px;">
+                        <h6 style="display: inline;">Payment mode:&emsp;</h6>
+                        <label for="chkOnline">
+                            <h6>
+                                <input type="radio" id="rbOnline"  name="chkPayment" style="margin-right: 2px;" value="online" checked/>
+                                <!-- <input type="radio" id="chkOnline" name="chkPayment" onclick="grayer('f_1',false);" style="margin-right: 2px;"/> -->
+                                Online&emsp;
+                            </h6>
+                        </label>
+                        <label for="chkCash">
+                            <h6>
+                                <input type="radio" id="rbCash" name="chkPayment" style="margin-right: 2px;" value="cash"/>
+                                <!-- <input type="radio" id="chkCash" name="chkPayment" onclick="grayer('f_1',true);" style="margin-right: 2px;"/> -->
+                                Cash&emsp;
+                            </h6>
+                        </label>
+                    </div>
+                    <div style="margin-bottom: 5px;">
+                        <h6 style="display: inline;">Delivery Date:&emsp;</h6>
+                        <input type="date" name="delivery_date" required/>
+                    </div>
+                    <!-- <div style="margin-bottom: 5px;">
+                        <h6 style="display: inline;">Is this scheduled order?  </h6>
+                        <input type="checkbox" name="scheduledOrder"/>
+                    </div> -->
+                    <div style="margin-bottom: 5px;">
+                        <h6 style="display: inline;">Repeat order again after:&emsp;</h6>
+                        <input type="number" id=" order_repeat " name="order_repeat" data-parsley-required="text" placeholder="Category" min="0" max="14" value="0" />
+                        <h6 style="display: inline;"> days.</h6>
+                    </div>
+                </div>
+                <br>
+                <div class="billing_details">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h3>Billing Details</h3>
+                            <!-- <form id="f_1" class="row contact_form" action="#" method="post" novalidate="novalidate"> -->
+                                <div class="col-md-6 form-group p_star">
+                                    <label for="name" style="font-weight: 500;">Name</label>
+                                    <input type="text" class="form-control" id="first" name="name" placeholder="Name" value="<%= user.user_name %>" required>
+                                    <!-- <span class="placeholder" data-placeholder="Name"></span> -->
+                                </div>
+        
+                                <div class="col-md-6 form-group p_star">
+                                    <label for="phone_number" style="font-weight: 500;">Phone number</label>
+                                    <input type="text" class="form-control" id="number" name="mobile_no" placeholder="Phone number" value="<%= user.mobile_no %>" required>
+                                    <!-- <span class="placeholder" data-placeholder="Phone number"></span> -->
+                                </div>
+                                <div class="col-md-6 form-group p_star">
+                                    <label for="email" style="font-weight: 500;">Email address</label>
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="Email Address" value="<%= user.email_id %>" readonly="readonly" required>
+                                    <!-- <span class="placeholder" data-placeholder="Email Address"></span> -->
+                                </div>
+                
+                                <div class="col-md-12 form-group p_star">
+                                    <label for="address" style="font-weight: 500;">Address</label>
+                                    <input type="text" class="form-control" id="add1" name="address" placeholder="Address" value="<%= user.address %>" required>
+                                    <!-- <span class="placeholder" data-placeholder="Address"></span> -->
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <label for="zip" style="font-weight: 500;">Postcode/ZIP</label>
+                                    <input type="text" class="form-control" name="zip" placeholder="Postcode/ZIP" required>
+                                </div>
+
+                            <!-- </form> -->
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="order_box">
+                                <h2>Your Order</h2>
+                                <ul class="list">
+                                    <li><a>Product <span>Total</span></a></li>
+                                    <% cartItems.forEach(function(cartItem){ %>
+                                        <li><a><%= cartItem.item.product_name %><span class="middle">x<%= cartItem.qty %></span> <span class="last">Rs.<%= cartItem.price %></span></a></li>
+                                        <!-- <li><a>Fresh Tomatoes <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
+                                        <li><a>Fresh Brocoli <span class="middle">x 02</span> <span class="last">$720.00</span></a></li> -->
+                                    <% }) %>
+                                </ul>
+                                <ul class="list list_2">
+                                    <div style="display: block;text-align: right;">
+                                    <li>Total Rs. <input type="number" id="order_amount" name="order_amount" value="<%= totalPrice %>" style="background: transparent;border: none;width: 50px;" readonly="readonly"/></li>
+                                    </div>
+                                    <!-- <li><a>Shipping <span>Flat rate: $00.00</span></a></li> -->
+                                    <!-- <li><a>Total <span>$2160.00</span></a></li> -->
+                                </ul>
+                                <!-- <div class="payment_item">
+                                    <div class="radion_btn">
+                                        <input type="radio" id="f-option5" name="selector">
+                                        <label for="f-option5">Check payments</label>
+                                        <div class="check"></div>
+                                    </div>
+                                    <p>Please send a check to Store Name, Store Street, Store Town, Store State / County,
+                                        Store Postcode.</p>
+                                </div> -->
+                                <!-- <div class="payment_item active">
+                                    <div class="radion_btn">
+                                        <input type="radio" id="f-option6" name="selector">
+                                        <label for="f-option6">Paypal </label>
+                                        <img src="img/product/card.jpg" alt="">
+                                        <div class="check"></div>
+                                    </div>
+                                    <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal
+                                        account.</p>
+                                </div> -->
+                                <div class="creat_account">
+                                    <input type="checkbox" id="f-option4" name="selector" onclick="terms_changed(this,'submit_button')">
+                                    <label for="f-option4">I’ve read and accept the </label>
+                                    <a href="">terms & conditions*</a>
+                                </div>
+                                <button type="submit" id="submit_button" class="primary-btn" style="border:0px; width: 100%;opacity: 0.4;" onclick="checkPaymentMode()" disabled>Confirm Payment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!--================End Checkout Area =================-->
+    <%- include('partials/footer'); -%>
